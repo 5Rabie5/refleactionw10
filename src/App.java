@@ -15,7 +15,7 @@ public class App {
         Long wordCount = aliceAdventures.stream()
                 .map(e -> e.split(" "))
                 .flatMap(Stream::of)
-                .filter(e -> !e.equals(" "))
+                .filter(e -> !e.isEmpty())
                 .count();
         System.out.println(wordCount);
 
@@ -23,7 +23,7 @@ public class App {
         Long distinctWords = aliceAdventures.stream()
                 .map(e -> e.split(" "))
                 .flatMap(Stream::of)
-                .filter(e -> !e.equals(" "))
+                .filter(e -> !e.isEmpty())
                 .distinct()
                 .count();
         System.out.println(distinctWords);
@@ -32,7 +32,8 @@ public class App {
          String  mostAppearingWord = aliceAdventures.stream()
                 .map(e -> e.split(" "))
                 .flatMap(Stream::of)
-                .filter(e -> !e.equals(" "))
+              .filter(e -> !" ".equals(e))
+                 .filter(e -> !e.isEmpty())
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()))
                 .entrySet()
                 .stream()
